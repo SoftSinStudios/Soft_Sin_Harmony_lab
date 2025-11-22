@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SoftSin Harmony Laby</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header id="topbar">
+    <div class="wrap">
+
+      <select id="keySelect">
+        <option value="C">C Major</option>
+        <option value="G">G</option>
+        <option value="D">D</option>
+        <option value="A">A</option>
+        <option value="E">E</option>
+        <option value="B">B</option>
+        <option value="F#">F# / Gb</option>
+        <option value="C#">C# / Db</option>
+        <option value="G#">G# / Ab</option>
+        <option value="D#">D# / Eb</option>
+        <option value="A#">A# / Bb</option>
+        <option value="F">F</option>
+      </select>
+
+      <select id="scaleSelect">
+        <option value="major">Major</option>
+        <option value="minor">Natural Minor</option>
+        <option value="harmonic">Harmonic Minor</option>
+        <option value="melodic">Melodic Minor</option>
+      </select>
+
+      <select id="tuningSelect">
+        <option value="E Standard">Guitar: E Standard</option>
+        <option value="Drop D">Guitar: Drop D</option>
+      </select>
+    </div>
+  </header>
+
+  <main id="layout">
+    <section id="circlePanel"><label>Circle of 5ths</label>
+      <div id="circle"></div>
+	<label>6-4-1-5 Progression</label>
+      <div id="sixFourOneFive"></div>
+    </section>
+
+    <section id="progressionPanel">
+
+      <div id="chordDiagramGrid"></div>
+    </section>
+
+    <section id="fretboardPanel">
+      <div id="fretboard"></div>
+	  
+	      <!-- preset vibes and progression list retained for later but hidden in CSS -->
+      <div id="vibes">
+	    <label>Vibe: </label>
+        <button class="vibe" data-vibe="sad">Sad</button>
+        <button class="vibe" data-vibe="dark">Dark</button>
+        <button class="vibe" data-vibe="asian">Asian</button>
+        <button class="vibe" data-vibe="ballad">Ballad</button>
+        <button class="vibe" data-vibe="haunted">Haunted</button>
+        <button class="vibe" data-vibe="pop">Pop</button>
+      </div>
+
+      <div id="progressionList"></div>  
+
+      <div id="shapes">
+        <h3>Chord Shapes</h3>
+        <div id="shapeList"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="composer">
+	<div class="wrap" id="composerInner"></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

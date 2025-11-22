@@ -1,0 +1,552 @@
+:root {
+  --bg: #0b0b0b;
+  --panel: #141414;
+  --ink: #f5f5f5;
+  --muted: #999;
+  --accent: #e15b64;
+  --note-bg: #202734;
+  --grid-line: #333;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #181818 0, #060606 55%, #000 100%);
+  color: var(--ink);
+}
+
+/* ---------------- TOPBAR ---------------- */
+
+#topbar {
+  border-bottom: 1px solid #222;
+  background: #050505;
+}
+
+#topbar .wrap {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#topbar select {
+  background: #111;
+  border: 1px solid #333;
+  color: var(--ink);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+#topbarButtons {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+}
+
+#topbarButtons button {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  color: var(--ink);
+  font-size: 13px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#topbarButtons button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------------- LAYOUT ---------------- */
+
+#layout {
+  max-width: 1300px;
+  margin: 20px auto;
+
+  display: grid;
+  grid-template-columns: 300px 350px 700px;
+  gap: 20px;
+
+  /* ensure panels stretch vertically */
+  align-items: stretch;
+}
+
+#circlePanel,
+#progressionPanel,
+#fretboardPanel {
+  background: var(--panel);
+  border: 1px solid #222;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* ---------------- CIRCLE ---------------- */
+
+#circle {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#circle svg {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+}
+
+.circle-slice-major {
+  fill: #1a2330;
+  stroke: #2c3a4f;
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.circle-slice-minor {
+  fill: #121924;
+  stroke: #252f3f;
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.slice-label {
+  font-size: 13px;
+  fill: #d0d6ea;
+  pointer-events: none;
+}
+
+.slice-label-minor {
+  font-size: 11px;
+  fill: #a4afc7;
+  pointer-events: none;
+}
+
+.slice-active-major {
+  fill: #27354b;
+  stroke: #e15b64;
+  stroke-width: 2;
+}
+
+.slice-active-minor {
+  fill: #1a2232;
+  stroke: #e15b64;
+  stroke-width: 2;
+}
+
+#circlePanel label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  margin: 8px 0 12px 0;
+}
+
+/* 6–4–1–5 diagram under circle of fifths */
+
+#sixFourOneFive {
+  margin-top: 16px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #222;
+  background: #101010;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* spread across full width */
+  gap: 6px;
+}
+
+.sfif-step {
+  /* let them shrink instead of forcing a wide pill */
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 4px 6px;
+  border-radius: 999px;
+  background: #181818;
+  border: 1px solid #333;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sfif-chord {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.sfif-roman {
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.sfif-arrow {
+  flex: 0 0 auto;
+  font-size: 12px;
+  color: var(--muted);
+  padding: 0 2px;
+}
+
+/* ---------------- PROGRESSIONS PANEL ---------------- */
+
+#vibes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+/* temporarily hidden until preset progressions are wired back in */
+#vibes,
+#progressionList {
+ }
+
+#vibes .vibe {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  color: var(--ink);
+  font-size: 13px;
+  padding: 4px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* chord diagrams in center progression panel */
+
+#chordDiagramGrid {
+  margin-top: 8px;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 12px;
+}
+
+.chord-diagram {
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 6px;
+  padding: 6px 6px 8px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  
+}
+
+.chord-diagram .chord-name {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.diagram-grid {
+  display: grid;
+  /* 1st col = fret numbers, next 6 = strings */
+  grid-template-columns: 12px repeat(6, 18px);
+  /* 1st row = markers, next 5 = frets 1–5 */
+  grid-template-rows: 16px repeat(5, 18px);
+  gap: 2px;
+}
+
+.diagram-fret-num {
+  font-size: 10px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.diagram-corner {
+  /* top-left empty cell above fret numbers */
+}
+
+.diagram-marker {
+  text-align: center;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.diagram-cell {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #333;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* nut styling for open-position chords */
+.diagram-cell.nut-cell {
+  border-top-width: 3px;
+  border-top-color: #f5f5f5;
+}
+
+.diagram-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #f5f5f5;
+}
+
+.fret-label {
+  margin-top: 3px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.prog {
+  padding: 8px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #222;
+}
+
+.prog:hover {
+  background: #1c1c1c;
+}
+
+.prog.active {
+  background: #222;
+  border-left: 4px solid var(--accent);
+}
+
+/* ---------------- FRETBOARD PANEL ---------------- */
+
+#fretboardPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* clean professional scale chart */
+
+#fretboard {
+  flex: 1;
+  background: #101010;
+  border-radius: 8px;
+  padding: 12px;
+  overflow-x: auto;
+}
+
+#fretboardGrid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 50px;
+  border-collapse: collapse;
+}
+
+.fret-col {
+  display: grid;
+  grid-template-rows: 26px repeat(6, 40px);
+}
+
+.fret-label-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--muted);
+  border-bottom: 1px solid #333;
+}
+
+.string-cell {
+  border-bottom: 1px solid var(--grid-line);
+  border-right: 1px solid var(--grid-line);
+  position: relative;
+  background: #0a0a0a;
+}
+
+.string-cell:nth-child(even) {
+  background: #090909;
+}
+
+.string-name {
+  position: absolute;
+  left: 4px;
+  top: 3px;
+  font-size: 10px;
+  color: #555;
+}
+
+/* scale notes */
+
+.scale-note-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f2f2f2;
+  border: 1px solid #000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #000;
+}
+
+.scale-note-dot.root {
+  background: #e15b64;
+  color: #fff;
+}
+
+/* ---------------- CHORD SHAPES PANEL ---------------- */
+
+#shapes {
+  padding: 10px;
+  border-radius: 8px;
+  background: #101010;
+  border: 1px solid #222;
+}
+
+#shapes h3 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#shapeList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.shape-pill {
+  background: #181818;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 12px;
+  border: 1px solid #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.shape-name {
+  font-weight: 600;
+}
+
+.shape-tones {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------------- COMPOSER FOOTER ---------------- */
+
+#composer {
+  border-top: 1px solid #222;
+  background: #050505;
+}
+
+#composerInner {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#composer .label {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #777;
+  font-size: 11px;
+}
+
+#composer .chord-pill {
+  background: #181818;
+  border-radius: 999px;
+  padding: 5px 10px;
+  border: 1px solid #333;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+#composer .chord-root {
+  font-weight: 600;
+}
+
+#composer .chord-roman {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+#composer button {
+  /* margin-left: auto;   <-- REMOVE THIS */
+  background: #1b1b1b;
+  border: 1px solid #333;
+  color: var(--ink);
+  font-size: 13px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#composer button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+#composer button1 {
+  background: #4CAF50;
+  border: 1px solid #333;
+  color: var(--ink);
+  font-size: 13px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+#composer button2 {
+  background: #ff4a4a;
+  border: 1px solid #333;
+  color: var(--ink);
+  font-size: 13px;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* remove button styles */
+
+.composer-chord {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.remove-chord {
+  background: #1b1b1b;
+  border: 1px solid #333;
+  color: var(--muted);
+  font-size: 11px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.remove-chord:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
